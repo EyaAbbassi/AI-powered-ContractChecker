@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
 const swaggerUi = require('swagger-ui-express');
-const specs = require('./swagger');
+const specs = require('./utils/swagger');
 const contractRoutes = require('./routes/contractRoute');
 require('dotenv').config();
 
