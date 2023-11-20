@@ -2,7 +2,6 @@ const Contract = require('../models/contractModel');
 const analysisService = require('../services/analysisService');
 const pdfParse = require('pdf-parse');
 
-
 exports.uploadContract = async (req, res) => {
   try {
     const { buffer, originalname } = req.file;
@@ -35,7 +34,6 @@ exports.uploadContract = async (req, res) => {
       res.status(500).json({ message: 'Internal server error' });
   }
 };
-
 
 exports.analyzeContract = async (req, res) => {
   try {
@@ -99,7 +97,6 @@ exports.getAllContracts = async (req, res) => {
   }
 };
 
-
 exports.getContractById = async (req, res) => {
   try {
     const contract = await Contract.findById(req.params.id);
@@ -113,7 +110,6 @@ exports.getContractById = async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 };
-
 
 exports.deleteContractById = async (req, res) => {
   try {
