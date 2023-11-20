@@ -42,7 +42,6 @@ const upload = require('../middlewares/uploadMiddleware');
  */
 router.post('/upload-contract', upload.single('file'), contractController.uploadContract);
 
-
 /**
  * @swagger
  * /contracts/analyze-contract:
