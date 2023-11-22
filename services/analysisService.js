@@ -83,29 +83,6 @@ const ruleBasedLegalCompliance = async (text) => {
   return complianceResults;
 };
 
-// Function to split a document into segments based on a maximum number of tokens
-function splitDocumentIntoSegments(document, maxTokensPerSegment) {
-  const words = document.split(' ');
-  const segments = [];
-  let currentSegment = '';
-
-  for (const word of words) {
-    const currentSegmentLength = currentSegment.split(' ').length;
-    if (currentSegmentLength + 1 <= maxTokensPerSegment) {
-      currentSegment += ` ${word}`;
-    } else {
-      segments.push(currentSegment.trim());
-      currentSegment = word;
-    }
-  }
-
-  if (currentSegment.trim() !== '') {
-    segments.push(currentSegment.trim());
-  }
-
-  return segments;
-}
-
 module.exports = {
     analyzeToxicity,
     analyzeLegalCompliance,

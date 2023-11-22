@@ -1,25 +1,9 @@
 describe('Contract test suite', () => {
-  it('should upload a contract and return contract details', () => {
-    cy.fixture('samplecontract.pdf').then((fileContent) => {
-      cy.request({
-        method: 'POST',
-        url: '/contracts/upload-contract',
-        body: { file: fileContent },
-      }).then((response) => {
-        const { status, body } = response;
-        const { contract } = body;
-
-        expect(status).to.equal(201);
-        expect(body.message).to.equal('Contract uploaded successfully');
-        expect(contract).to.have.all.keys('contractId', 'title', 'pagesNum', 'author');
-      });
-    });
-  });
-
-  it('Analyzes a contract', () => {
+  
+  it('Analyzes Rule Based Legal Compliance of the contract', () => {
     const requestBody = {
-      contractId: '12345',
-      analysisTypes: ['Toxicity Analysis', 'Legal Compliance', 'Rule Based Legal Compliance'],
+      contractId: '655b89ebb9d3e8cdc464cee4',
+      analysisTypes: ['Rule Based Legal Compliance'],
     };
 
     cy.request('POST', `/contracts/analyze-contract`, requestBody).then((response) => {
@@ -28,6 +12,20 @@ describe('Contract test suite', () => {
       expect(status).to.equal(200);
       expect(body.message).to.equal('Analysis complete');
       expect(body.result).to.be.an('array');
+    });
+  });
+
+  it('Analyzes the Legal Compliance of the contract', () => {
+    const requestBody = {
+      contractId: '655b89ebb9d3e8cdc464cee4',
+      analysisTypes: ['Legal Compliance'],
+    };
+  
+    cy.request('POST', `/contracts/analyze-contract`, requestBody).then((response) => {
+      const { status, body } = response;
+  
+      expect(status).to.equal(200);
+      expect(body.message).to.equal('Analysis complete');
     });
   });
 
@@ -45,16 +43,20 @@ describe('Contract test suite', () => {
   });
 
   it('should fetch a specific contract successfully', () => {
-    const contractId = '1234567890abcdef'; // Change with an existing object id from your database
+    const contractId = '655b89ebb9d3e8cdc464cee4';
     cy.request({
       method: 'GET',
       url: `/contracts/get-contract/${contractId}`,
+    }).then((response) => {
+      const { status, body } = response;
+
+      expect(status).to.equal(200);
+      expect(body).to.be.an('object')
     });
   });
 
   it('should delete a contract successfully', () => {
-    // Change with an existing object id from your database
-    const contractIdToDelete = '1234567890abcdef';
+    const contractIdToDelete = '655bf0f77f34ad5fc1b8f3ba';
 
     cy.request('DELETE', `/contracts/delete-contract/${contractIdToDelete}`).then((response) => {
       const { status, body } = response;

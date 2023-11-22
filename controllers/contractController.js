@@ -69,7 +69,7 @@ exports.analyzeContract = async (req, res) => {
             break;        
   
         default:
-          result = 'Not implemented';
+          result = 'Not implemented!';
           break;
       }
       analysisResults.push({ type, result });
