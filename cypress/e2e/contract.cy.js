@@ -2,7 +2,7 @@ describe('Contract test suite', () => {
   
   it('Analyzes Rule Based Legal Compliance of the contract', () => {
     const requestBody = {
-      contractId: '655b89ebb9d3e8cdc464cee4',
+      contractId: '65651b73a5eeea8ebaf3839d',
       analysisTypes: ['Rule Based Legal Compliance'],
     };
 
@@ -17,7 +17,7 @@ describe('Contract test suite', () => {
 
   it('Analyzes the Legal Compliance of the contract', () => {
     const requestBody = {
-      contractId: '655b89ebb9d3e8cdc464cee4',
+      contractId: '65651b73a5eeea8ebaf3839d',
       analysisTypes: ['Legal Compliance'],
     };
   
@@ -43,7 +43,7 @@ describe('Contract test suite', () => {
   });
 
   it('should fetch a specific contract successfully', () => {
-    const contractId = '655b89ebb9d3e8cdc464cee4';
+    const contractId = '65651b73a5eeea8ebaf3839d';
     cy.request({
       method: 'GET',
       url: `/contracts/get-contract/${contractId}`,
@@ -56,7 +56,7 @@ describe('Contract test suite', () => {
   });
 
   it('should delete a contract successfully', () => {
-    const contractIdToDelete = '655bf0f77f34ad5fc1b8f3ba';
+    const contractIdToDelete = '65651b73a5eeea8ebaf3839d';
 
     cy.request('DELETE', `/contracts/delete-contract/${contractIdToDelete}`).then((response) => {
       const { status, body } = response;

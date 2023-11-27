@@ -57,16 +57,15 @@ const ruleBasedLegalCompliance = async (text) => {
   // Define rules for legal compliance
   const complianceRules = [
     {
-      keyword: 'confidentiality agreement',
+      keyword: 'TERM AND TERMINATION',
       required: true,
-      message: 'Document must include a confidentiality agreement.',
+      message: 'Document must include a TERM AND TERMINATION terms.',
     },
     {
-      keyword: 'non-disclosure',
+      keyword: 'CONFIDENTIALITY',
       required: true,
-      message: 'Document must include non-disclosure terms.',
+      message: 'Document must include CONFIDENTIALITY terms.',
     },
-    // Add more rules as needed
   ];
 
   // Check each rule
@@ -76,7 +75,7 @@ const ruleBasedLegalCompliance = async (text) => {
     return {
       rule: rule.keyword,
       isCompliant: rule.required ? isKeywordPresent : !isKeywordPresent,
-      message: isKeywordPresent ? 'Compliant' : rule.message,
+      message: isKeywordPresent ? 'Rule Checked! All Good!' : rule.message,
     };
   });
 
